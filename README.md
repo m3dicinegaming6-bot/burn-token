@@ -119,28 +119,35 @@ Runs forever. Auto-detects whether to analyze code or do math. `Ctrl+C` to stop.
 
 ### Mode Selection
 
-```
-Project has source files? ──yes──> Code Analysis Mode (10 task types)
-         |                         - Architecture forensics
-         no                        - Security audit (line-by-line)
-         |                         - Performance profiling
-         v                         - Exhaustive code review
-Project has documents? ──yes──>    - Test strategy generation
-         |                         - Refactoring blueprint
-         no                        - Documentation generation
-         |                         - Dependency deep dive
-         v                         - API surface catalog
-    Math Mode (10 categories)      - Complexity metrics report
-    - Prime factorization
-    - Series & convergence
-    - Matrix algebra
-    - Calculus marathon
-    - Number theory proofs
-    - Combinatorics
-    - Probability & statistics
-    - Graph theory
-    - Abstract algebra
-    - Optimization
+```mermaid
+flowchart TD
+    start["Start /burn-token"]
+    source{"Source files found?"}
+    docs{"Documents found?"}
+    code["Code Analysis Mode"]
+    math["Math Mode"]
+    code_a["Architecture Forensics<br/>Security Audit<br/>Performance Profiling<br/>Exhaustive Code Review<br/>Test Strategy"]
+    code_b["Refactoring Blueprint<br/>Documentation Generation<br/>Dependency Deep Dive<br/>API Surface Catalog<br/>Complexity Metrics"]
+    math_a["Prime Factorization<br/>Series and Convergence<br/>Matrix Algebra<br/>Calculus Marathon<br/>Number Theory Proofs"]
+    math_b["Combinatorics<br/>Probability and Statistics<br/>Graph Theory<br/>Abstract Algebra<br/>Optimization"]
+
+    start --> source
+    source -- Yes --> code
+    source -- No --> docs
+    docs -- Yes --> code
+    docs -- No --> math
+    code --> code_a
+    code --> code_b
+    math --> math_a
+    math --> math_b
+
+    classDef decision fill:#fff4d6,stroke:#b7791f,stroke-width:2px,color:#5f370e;
+    classDef mode fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#1e3a8a;
+    classDef detail fill:#f8fafc,stroke:#475569,stroke-width:1.5px,color:#0f172a;
+
+    class source,docs decision;
+    class code,math mode;
+    class code_a,code_b,math_a,math_b detail;
 ```
 
 ### KV Cache Defeat

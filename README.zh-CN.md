@@ -119,28 +119,35 @@ head -5 ~/.claude/skills/burn-token/SKILL.md
 
 ### 模式选择
 
-```
-项目有源代码？ ──是──> 代码分析模式（10 种任务类型）
-      |                 - 架构逆向分析
-      否                - 逐行安全审计
-      |                 - 性能剖析报告
-      v                 - 全面代码审查
-项目有文档？ ──是──>    - 测试策略生成
-      |                 - 重构蓝图
-      否                - 文档生成
-      |                 - 依赖深度分析
-      v                 - API 接口目录
-  数学模式（10 类）      - 复杂度指标报告
-  - 素数分解
-  - 级数与收敛
-  - 矩阵代数
-  - 微积分马拉松
-  - 数论证明
-  - 组合数学
-  - 概率统计
-  - 图论
-  - 抽象代数
-  - 最优化
+```mermaid
+flowchart TD
+    start["开始 /burn-token"]
+    source{"发现源代码文件？"}
+    docs{"发现文档文件？"}
+    code["代码分析模式"]
+    math["数学模式"]
+    code_a["架构逆向分析<br/>安全审计<br/>性能剖析<br/>全面代码审查<br/>测试策略"]
+    code_b["重构蓝图<br/>文档生成<br/>依赖深度分析<br/>API 接口目录<br/>复杂度指标"]
+    math_a["素数分解<br/>级数与收敛<br/>矩阵代数<br/>微积分马拉松<br/>数论证明"]
+    math_b["组合数学<br/>概率统计<br/>图论<br/>抽象代数<br/>最优化"]
+
+    start --> source
+    source -- 是 --> code
+    source -- 否 --> docs
+    docs -- 是 --> code
+    docs -- 否 --> math
+    code --> code_a
+    code --> code_b
+    math --> math_a
+    math --> math_b
+
+    classDef decision fill:#fff4d6,stroke:#b7791f,stroke-width:2px,color:#5f370e;
+    classDef mode fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#1e3a8a;
+    classDef detail fill:#f8fafc,stroke:#475569,stroke-width:1.5px,color:#0f172a;
+
+    class source,docs decision;
+    class code,math mode;
+    class code_a,code_b,math_a,math_b detail;
 ```
 
 ### 击穿 KV 缓存
