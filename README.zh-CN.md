@@ -12,7 +12,8 @@
 
 | 功能 | 说明 |
 |------|------|
-| **自动检测模式** | 有代码？→ 无限代码分析。空项目？→ 硬核数学计算。 |
+| **Bless 模式** | 可以把 Token 烧给某个人，在 terminal 里持续念佛号、往生咒、金刚经等内容，并可配合 ASCII 佛祖动画。 |
+| **模式选项** | `bless` 用来念经，`math` 用来做数学题，`code` 用来分析代码。 |
 | **无限循环** | 默认永远运行，直到你手动停止或 Token 耗尽。 |
 | **击穿 KV Cache** | 每次请求注入随机种子、时间戳、打乱顺序，防止缓存命中，确保每个 Token 都是实打实消耗。 |
 | **灵活配置** | 可设定时间限制、轮次限制，或直接无限燃烧。 |
@@ -72,7 +73,7 @@ head -5 ~/.claude/skills/burn-token/SKILL.md
 /burn-token
 ```
 
-永远运行。自动检测是分析代码还是做数学题。`Ctrl+C` 停止。
+默认进入 `bless` 模式无限运行，在 terminal 里为指定的人持续念经，直到你手动停止或 Token 耗尽。`Ctrl+C` 停止。
 
 ### 限时燃烧
 
@@ -92,8 +93,11 @@ head -5 ~/.claude/skills/burn-token/SKILL.md
 ### 强制模式
 
 ```
+/burn-token bless dasheng # 为 dasheng 念经
+/burn-token to dasheng    # bless 模式快捷写法
 /burn-token math         # 强制数学模式（即使项目有代码）
 /burn-token code         # 强制代码分析模式
+/burn-token 2h bless dasheng
 /burn-token 2h math      # 组合：2 小时 + 数学模式
 ```
 
@@ -122,20 +126,28 @@ head -5 ~/.claude/skills/burn-token/SKILL.md
 ```mermaid
 flowchart TD
     start["开始 /burn-token"]
+    intent{"是否提供祝福对象？"}
     source{"发现源代码文件？"}
     docs{"发现文档文件？"}
+    bless["Bless 模式"]
     code["代码分析模式"]
     math["数学模式"]
+    bless_a["在 terminal 中持续念经<br/>阿弥陀佛佛号<br/>往生咒<br/>金刚经节选<br/>为指定对象回向"]
+    bless_b["ASCII 佛祖图案<br/>简单字符动画<br/>无限循环直到停止<br/>通过重复内容持续燃烧 Token"]
     code_a["架构逆向分析<br/>安全审计<br/>性能剖析<br/>全面代码审查<br/>测试策略"]
     code_b["重构蓝图<br/>文档生成<br/>依赖深度分析<br/>API 接口目录<br/>复杂度指标"]
     math_a["素数分解<br/>级数与收敛<br/>矩阵代数<br/>微积分马拉松<br/>数论证明"]
     math_b["组合数学<br/>概率统计<br/>图论<br/>抽象代数<br/>最优化"]
 
-    start --> source
+    start --> intent
+    intent -- 是 --> bless
+    intent -- 否 --> source
     source -- 是 --> code
     source -- 否 --> docs
     docs -- 是 --> code
     docs -- 否 --> math
+    bless --> bless_a
+    bless --> bless_b
     code --> code_a
     code --> code_b
     math --> math_a
@@ -146,9 +158,20 @@ flowchart TD
     classDef detail fill:#f8fafc,stroke:#475569,stroke-width:1.5px,color:#0f172a;
 
     class source,docs decision;
-    class code,math mode;
-    class code_a,code_b,math_a,math_b detail;
+    class bless,code,math mode;
+    class bless_a,bless_b,code_a,code_b,math_a,math_b detail;
 ```
+
+### Bless 模式
+
+`bless` 是偏仪式感的燃烧路径。不再做数学题，也不分析代码，而是在 terminal 中为指定对象持续输出佛号、咒语和佛经节选。
+
+典型输出包括：
+
+- 为目标对象持续念佛号
+- 往生咒与短经文片段
+- ASCII 佛祖图案与轻量字符动画
+- 持续重复的回向文案，让 Token 长时间稳定燃烧
 
 ### 击穿 KV 缓存
 

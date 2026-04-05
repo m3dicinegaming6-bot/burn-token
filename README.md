@@ -12,7 +12,8 @@ An aggressive token-burning skill for Claude Code / Codex / Claude CLI. It runs 
 
 | Feature | Description |
 |---------|-------------|
-| **Auto-detect mode** | Has code? → endless code analysis. Empty project? → hardcore math problems. |
+| **Bless mode** | Burn tokens for someone by continuously chanting Buddhist sutras and mantras in the terminal, with optional ASCII Buddha animation. |
+| **Mode options** | `bless` for chanting, `math` for math problems, `code` for code analysis. |
 | **Infinite loop** | Runs forever by default. Only stops when you say so (or tokens run out). |
 | **KV Cache defeat** | Injects entropy (random seeds, timestamps, shuffled order) into every prompt to prevent cache hits and maximize actual token consumption. |
 | **Configurable** | Set time limits, round limits, or let it rip. |
@@ -72,7 +73,7 @@ You should see the `---` frontmatter with `name: burn-token`.
 /burn-token
 ```
 
-Runs forever. Auto-detects whether to analyze code or do math. `Ctrl+C` to stop.
+Runs forever in `bless` mode by default. It chants for the selected person in the terminal until you stop it or tokens run out. `Ctrl+C` to stop.
 
 ### Time-Limited
 
@@ -92,8 +93,11 @@ Runs forever. Auto-detects whether to analyze code or do math. `Ctrl+C` to stop.
 ### Force Mode
 
 ```
+/burn-token bless dasheng # chant for dasheng
+/burn-token to dasheng    # shortcut for bless mode
 /burn-token math         # force math even if project has code
 /burn-token code         # force code analysis
+/burn-token 2h bless dasheng
 /burn-token 2h math      # combine time limit + mode
 ```
 
@@ -122,20 +126,28 @@ Runs forever. Auto-detects whether to analyze code or do math. `Ctrl+C` to stop.
 ```mermaid
 flowchart TD
     start["Start /burn-token"]
+    intent{"Target person provided?"}
     source{"Source files found?"}
     docs{"Documents found?"}
+    bless["Bless Mode"]
     code["Code Analysis Mode"]
     math["Math Mode"]
+    bless_a["Repeat chants in terminal<br/>Amitabha name recitation<br/>Rebirth mantra<br/>Diamond Sutra excerpts<br/>Dedication for target person"]
+    bless_b["ASCII Buddha art<br/>Simple terminal animation<br/>Endless loop until stop<br/>Focused token burning through repetition"]
     code_a["Architecture Forensics<br/>Security Audit<br/>Performance Profiling<br/>Exhaustive Code Review<br/>Test Strategy"]
     code_b["Refactoring Blueprint<br/>Documentation Generation<br/>Dependency Deep Dive<br/>API Surface Catalog<br/>Complexity Metrics"]
     math_a["Prime Factorization<br/>Series and Convergence<br/>Matrix Algebra<br/>Calculus Marathon<br/>Number Theory Proofs"]
     math_b["Combinatorics<br/>Probability and Statistics<br/>Graph Theory<br/>Abstract Algebra<br/>Optimization"]
 
-    start --> source
+    start --> intent
+    intent -- Yes --> bless
+    intent -- No --> source
     source -- Yes --> code
     source -- No --> docs
     docs -- Yes --> code
     docs -- No --> math
+    bless --> bless_a
+    bless --> bless_b
     code --> code_a
     code --> code_b
     math --> math_a
@@ -146,9 +158,20 @@ flowchart TD
     classDef detail fill:#f8fafc,stroke:#475569,stroke-width:1.5px,color:#0f172a;
 
     class source,docs decision;
-    class code,math mode;
-    class code_a,code_b,math_a,math_b detail;
+    class bless,code,math mode;
+    class bless_a,bless_b,code_a,code_b,math_a,math_b detail;
 ```
+
+### Bless Mode
+
+`bless` mode is the spiritual burn path. Instead of solving math or inspecting code, it keeps printing chants, mantras, and short sutra passages for a named person in the terminal.
+
+Typical output can include:
+
+- Buddha-name recitation for the target person
+- Rebirth mantra and short sutra lines
+- ASCII Buddha art and light terminal animation
+- Repeated dedication text to keep the token burn focused and continuous
 
 ### KV Cache Defeat
 
