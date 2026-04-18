@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(claude usage:*)",
-      "Bash(claude --usage)"
-    ]
-  }
-}
